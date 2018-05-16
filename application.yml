@@ -6,9 +6,35 @@ spring:
 spring:
   profiles: dev
   application: 
-    name: microconfig-test-dev
+    name: cloud-config-server-dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://edmin:hello@eureka-dev.com:6001/eureka
+  instance:
+    instance-id: eureka-dev.com
+    prefer-ip-address: true
 ---
 spring:
-  profiles: default
+  profiles: beta
   application: 
-    name: microconfig-test-default
+    name: cloud-config-server-beta
+eureka:
+  client:
+    service-url:
+      defaultZone: http://edmin:hello@eureka-beta.com:7001/eureka
+  instance:
+    instance-id: eureka-beta.com
+    prefer-ip-address: true
+---
+spring:
+  profiles: product
+  application: 
+    name: cloud-config-server-product
+eureka:
+  client:
+    service-url:
+      defaultZone: http://edmin:hello@eureka-product.com:8001/eureka
+  instance:
+    instance-id: eureka-product.com
+    prefer-ip-address: true
