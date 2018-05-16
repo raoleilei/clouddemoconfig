@@ -1,0 +1,36 @@
+server:
+  port: 8501
+spring:
+  application:
+    name: cloud-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://edmin:hello@eureka-7001.com:7001/eureka,http://edmin:hello@eureka-7002.com:7002/eureka,http://edmin:hello@eureka-7003.com:7003/eureka
+  instance:
+    instance-id: gateway-8501.com
+    prefer-ip-address: true
+info:
+  app.name: weicao-cloud-gateway
+  company.name: www.mldn.cn
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 10000
+  prefix: /weicao-proxy
+  ignored-services:
+    "*"
+  routes:
+    cloud-provider-company: /company-proxy/**
+    cloud-provider-dept: /dept-proxy/**
+ribbon:  
+  ReadTimeout: 60000  
+  ConnectTimeout: 60000 
+security:
+  basic:
+    enabled: true
+  user:
+    name: zdmin
+    password: hello
